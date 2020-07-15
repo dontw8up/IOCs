@@ -1,0 +1,36 @@
+<?xml version="1.0" encoding="us-ascii"?>
+<ioc xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns:xsd="http://www.w3.org/2001/XMLSchema" id="566ff0a2-6662-4376-bddc-e7421527dfce" last-modified="2020-07-15T21:52:00" xmlns="http://schemas.mandiant.com/2010/ioc">
+  <short_description>Arinzex.exe</short_description>
+  <description>AgentTesla found in the wild from hxxp://abass[.]ir/arinzex[.]exe</description>
+  <authored_by>KrknSec</authored_by>
+  <authored_date>2020-07-15T21:05:46</authored_date>
+  <links />
+  <definition>
+    <Indicator operator="OR" id="143e8367-22c3-4f65-913d-41e6390647a1">
+      <IndicatorItem id="b1ad9317-d682-4d7c-8226-e9ad1fc39c4f" condition="contains">
+        <Context document="FileItem" search="FileItem/FileExtension" type="mir" />
+        <Content type="string">.exe</Content>
+      </IndicatorItem>
+      <IndicatorItem id="6ca107df-e2e5-4af7-9b43-3a49689dfda3" condition="is">
+        <Context document="FileItem" search="FileItem/Md5sum" type="mir" />
+        <Content type="md5">2f042b9154513ae10726fc9cbaca5d7a</Content>
+      </IndicatorItem>
+      <IndicatorItem id="3f83f43d-0c69-4da8-93b4-745639d7b289" condition="is">
+        <Context document="FileItem" search="FileItem/SizeInBytes" type="mir" />
+        <Content type="int">1.1MB</Content>
+      </IndicatorItem>
+      <IndicatorItem id="8d39b7f8-2c39-44a8-861a-617470fb1e04" condition="contains">
+        <Context document="FileItem" search="FileItem/PEInfo/ImportedModules/Module/ImportedFunctions/string" type="mir" />
+        <Content type="string">_CorExeMain</Content>
+      </IndicatorItem>
+      <IndicatorItem id="ca7e136b-f617-4156-9e7a-d93b5dfc9b10" condition="contains">
+        <Context document="FileItem" search="FileItem/PEInfo/VersionInfoList/VersionInfoItem/InternalName" type="mir" />
+        <Content type="string">ZGhQC.exe</Content>
+      </IndicatorItem>
+      <IndicatorItem id="c06561a8-56a7-45c3-80c8-0c16bed10021" condition="contains">
+        <Context document="FileItem" search="FileItem/FileName" type="mir" />
+        <Content type="string">arinzex.exe</Content>
+      </IndicatorItem>
+    </Indicator>
+  </definition>
+</ioc>
